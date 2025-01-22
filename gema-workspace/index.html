@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Test SQL Injection</title>
+    <title>Test SQL Injection</title>
 </head>
 <body>
-<h1>Bienvenue sur test-gema.local</h1>
-<form method="post" action="/search">
-<label for="search">Rechercher :</label>
-<input type="text" id="search" name="search">
-<button type="submit">Envoyer</button>
-</form>
-<!-- Ce formulaire est vulnérable aux injections SQL car il
-n'utilise pas d'échappement des entrées utilisateur -->
+    <h1>Bienvenue sur test-gema.local</h1>
+    <form method="post" action="/search" onsubmit="return validateInput()">
+        <label for="search">Rechercher :</label>
+        <input type="text" id="search" name="search" oninput="sanitizeInput(this)" required>
+        <button type="submit">Envoyer</button>
+    </form>
+    <script>
+        // Fonction pour valider l'entrée utilisateur
+        function validateInput() {
+            const input = document.getElementById('search').value;
+            const pattern = /^[a-zA-Z0-9\s]+$/; // N'accepte que les lettres, chiffres et espaces
+            if (!pattern.test(input)) {
+                alert("Entrée invalide. Veuillez utiliser uniquement des lettres, chiffres et espaces.");
+                return false;
+            }
+            return true;
+        }
+
+        // Fonction pour nettoyer l'entrée utilisateur en temps réel
+        function sanitizeInput(input) {
+            input.value = input.value.replace(/['";--]/g, '');
+        }
+    </script>
 </body>
 </html>
