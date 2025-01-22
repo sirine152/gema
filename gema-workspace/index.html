@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test SQL Injection</title>
+    <title>Test sécurisé</title>
 </head>
 <body>
     <h1>Bienvenue sur test-gema.local</h1>
     <form method="post" action="/search" onsubmit="return validateInput()">
         <label for="search">Rechercher :</label>
-        <input type="text" id="search" name="search" required 
-               oninput="this.value = this.value.replace(/[';--]/g, '')">
+        <input type="text" id="search" name="search" 
+               oninput="this.value = this.value.replace(/['\";--]/g, '')" required>
         <button type="submit">Envoyer</button>
     </form>
     <script>
-        // Fonction de validation renforcée
+        // Validation renforcée pour éviter les caractères dangereux
         function validateInput() {
             const input = document.getElementById('search').value;
-            // Accepter uniquement des caractères alphanumériques, espaces, et quelques signes
-            const pattern = /^[a-zA-Z0-9\s\-]+$/;
+            const pattern = /^[a-zA-Z0-9\s\-]+$/; // Autorise lettres, chiffres, espaces et tirets
             if (!pattern.test(input)) {
                 alert("Entrée invalide. Veuillez utiliser uniquement des lettres, chiffres, espaces et tirets.");
                 return false;
