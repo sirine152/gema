@@ -7,24 +7,21 @@
     <h1>Bienvenue sur test-gema.local</h1>
     <form method="post" action="/search" onsubmit="return validateInput()">
         <label for="search">Rechercher :</label>
-        <input type="text" id="search" name="search" oninput="sanitizeInput(this)" required>
+        <input type="text" id="search" name="search" required 
+               oninput="this.value = this.value.replace(/[';--]/g, '')">
         <button type="submit">Envoyer</button>
     </form>
     <script>
-        // Fonction pour valider l'entrée utilisateur
+        // Fonction de validation renforcée
         function validateInput() {
             const input = document.getElementById('search').value;
-            const pattern = /^[a-zA-Z0-9\s]+$/; // N'accepte que les lettres, chiffres et espaces
+            // Accepter uniquement des caractères alphanumériques, espaces, et quelques signes
+            const pattern = /^[a-zA-Z0-9\s\-]+$/;
             if (!pattern.test(input)) {
-                alert("Entrée invalide. Veuillez utiliser uniquement des lettres, chiffres et espaces.");
+                alert("Entrée invalide. Veuillez utiliser uniquement des lettres, chiffres, espaces et tirets.");
                 return false;
             }
             return true;
-        }
-
-        // Fonction pour nettoyer l'entrée utilisateur en temps réel
-        function sanitizeInput(input) {
-            input.value = input.value.replace(/['";--]/g, '');
         }
     </script>
 </body>
