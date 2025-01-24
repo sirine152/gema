@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Test SQL Injection - Sécurisé</title>
-    <script>
-        // Fonction pour valider l'entrée utilisateur côté client
-        function validateInput(input) {
-            input.value = input.value.replace(/['";--]/g, ''); // Supprime les caractères problématiques
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWASP Dependency-Check test1</title>
+<!-- Inclusion d'une bibliothèque JavaScript sécurisée -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 <body>
-
-<h1>Bienvenue sur test-gema.local</h1>
-<form method="post" action="/search">
-    <label for="user_search">Rechercher :</label>
-    <input
-        type="text"
-        id="user_search"
-        name="user_search" <!-- Modification ici -->
-        oninput="validateInput(this)"
-        placeholder="Entrez votre recherche"
-        required>
-    <button type="submit">Envoyer</button>
-</form>
-<!-- Le champ "name" a été modifié pour éviter le test conditionnel du pipeline -->
+<h1>TP4 Test OWASP Dependency-Check test1 TP1</h1>
+<p>Ceci est une page de démonstration avec une bibliothèque sécurisée.</p>
 </body>
 </html>
