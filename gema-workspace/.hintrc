@@ -1,0 +1,10 @@
+{
+  "connector": {
+    "name": "local"
+  },
+  "hints": {
+    "accessibility": "error",
+    "html-checker": "error"
+  }
+}
+
