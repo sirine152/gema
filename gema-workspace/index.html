@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ooooooOWASP Dependency-Check test1</title>
-<!-- Inclusion d'une bibliothèque JavaScript sécurisée -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<title>Test Page</title>
+<!-- Inclusion de CSS en ligne au lieu d'un fichier séparé -->
+<style>
+body { font-family: Arial; color: #000000; } /* Problème
+d'accessibilité : contraste insuffisant */
+h1 { font-size: 48px; color: #ff0000; } /* Problème
+d'accessibilité : couleur non adaptée */
+</style>
+<!-- Script mal placé dans le <head> sans différé -->
+<script>
+console.log('Test script');
+var user = "<script>alert('XSS')</script>"; // Vulnérabilité
+XSS potentielle
+</script>
 </head>
 <body>
-<h1>TP4 Test OWASP Dependency-Check test1 TP1</h1>
-<p>Ceci est une page de démonstration avec une bibliothèque sécurisée.</p>
+<h1>Bienvenue</h1>
+
+<!-- Utilisation d'une balise mal fermée -->
+<p>Cette page a plusieurs erreurs HTML.
+<!-- Image sans attribut alt -->
+<img src="test.jpg">
+<!-- Lien sans description -->
+<a href="#">Cliquez ici</a>
+<!-- Utilisation de balises obsolètes -->
+<font size="3">Texte avec balise obsolète</font>
 </body>
 </html>
